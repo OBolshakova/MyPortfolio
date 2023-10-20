@@ -1,0 +1,2930 @@
+{
+	"info": {
+		"_postman_id": "65e283ec-5cff-45d2-af10-812e9a83d246",
+		"name": "Skyeng_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28168633"
+	},
+	"item": [
+		{
+			"name": "1. Добавление события в прошлое (\"Описание\"- кириллица, латиница, пробелы и спец.символы)",
+			"item": [
+				{
+					"name": "создание события в прошлом",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID_1\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"\r",
+									"var key = \"time_1\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.variables.set(\"day2022\", _.random(15, 20));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"поле Описание принимает кириллицу english символы и пробелы @№№ ???   \",\r\n    \"title\": \"{{$randomCity}}\",\r\n    \"startAt\": \"2022-10-{{day2022}}T05:00:00+03:00\",\r\n    \"endAt\": \"2022-10-{{day2022}}T05:30:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/createPersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "получение списка (проверка созданного события в прошлом)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2022-10-15T00:00:00+00:00\",\r\n    \"till\": \"2022-10-20T23:59:59+00:00\",\r\n    \"onlyTypes\": [\r\n        \"slot\",\r\n        \"event\"\r\n    ], \r\n    \"statuses\": [\r\n        \"without_status\"\r\n    ]\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/events"
+					},
+					"response": []
+				},
+				{
+					"name": "удаление события из прошлого",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{eventID_1}},\r\n    \"startAt\": \"{{time_1}}\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/removePersonal"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Добавление события в будущее (поле \"Описание\" пустое)",
+			"item": [
+				{
+					"name": "создание события в будущем",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID_2\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"\r",
+									"var key = \"time_2\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.variables.set(\"anyfutureday\", _.random(25, 31));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"{{$randomCountry}}\",\r\n    \"startAt\": \"2024-03-{{anyfutureday}}T05:00:00+03:00\",\r\n    \"endAt\": \"2024-03-{{anyfutureday}}T05:30:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/createPersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "получение списка (проверка созданного события в будущем)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2024-03-25T00:00:00+00:00\",\r\n    \"till\": \"2024-03-31T23:59:59+00:00\",\r\n    \"onlyTypes\": [\r\n        \"slot\",\r\n        \"event\"\r\n    ], \r\n    \"statuses\": [\r\n        \"without_status\"\r\n    ]\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/events"
+					},
+					"response": []
+				},
+				{
+					"name": "удаление события из будущего",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{eventID_2}},\r\n    \"startAt\": \"{{time_2}}\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/removePersonal"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Добавление события в день, когда уже есть событие",
+			"item": [
+				{
+					"name": "создание события 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID_3\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"\r",
+									"var key = \"time_3\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"{{$randomColor}}\",\r\n    \"startAt\": \"2023-09-01T05:00:00+03:00\",\r\n    \"endAt\": \"2023-09-01T05:30:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/createPersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "создание события 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID_3_2\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"\r",
+									"var key = \"time_3_2\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"{{$randomColor}}\",\r\n    \"startAt\": \"2023-09-01T05:00:00+03:00\",\r\n    \"endAt\": \"2023-09-01T05:30:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/createPersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "получение списка (проверка созданных событий)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2023-09-01T05:00:00+03:00\",\r\n    \"till\": \"2023-09-01T05:30:00+03:00\",\r\n    \"onlyTypes\": [\r\n        \"slot\",\r\n        \"event\"\r\n    ], \r\n    \"statuses\": [\r\n        \"without_status\"\r\n    ]\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/events"
+					},
+					"response": []
+				},
+				{
+					"name": "удаление события 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{eventID_3}},\r\n    \"startAt\": \"{{time_3}}\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/removePersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "удаление события 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{eventID_3_2}},\r\n    \"startAt\": \"{{time_3_2}}\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/removePersonal"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. Редактировать поле \"Название\"",
+			"item": [
+				{
+					"name": "создание события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID_4\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"{{$randomPrice}}\",\r\n    \"startAt\": \"2023-07-25T01:00:00+00:00\",\r\n    \"endAt\": \"2023-07-25T01:30:00+00:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/createPersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "редактирование поля \"Название\"",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"ЦЦЦЦЦЦЦЦЦЦЦЦЦ\",\r\n    \"startAt\": \"2023-07-25T01:00:00+00:00\",\r\n    \"endAt\": \"2023-07-25T01:30:00+00:00\",\r\n    \"id\": {{eventID_4}},\r\n    \"oldStartAt\": \"2023-07-25T01:00:00+00:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/updatePersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "удаление события",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{eventID_4}},\r\n    \"startAt\": \"2023-07-25T01:00:00+00:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/removePersonal"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5. Редактировать поле \"Дата\" (перенос из будущего в прошлое)",
+			"item": [
+				{
+					"name": "создание события в будущем",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID_5\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"8 Марта\",\r\n    \"startAt\": \"2024-03-08T05:00:00+03:00\",\r\n    \"endAt\": \"2024-03-08T05:30:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/createPersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "перенос из будущего в прошлое",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"time_5\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"\r",
+									"var key = \"eventID_5_2\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"8 Марта\",\r\n    \"startAt\": \"2023-07-25T01:00:00+00:00\",\r\n    \"endAt\": \"2023-07-25T01:30:00+00:00\",\r\n    \"id\": {{eventID_5}},\r\n    \"oldStartAt\": \"2024-03-08T05:00:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/updatePersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "удаление события",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{eventID_5_2}},\r\n    \"startAt\": \"{{time_5}}\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/removePersonal"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6. Редактировать поле \"Дата \" (перенос из прошлого в будущее) + изм цвета события",
+			"item": [
+				{
+					"name": "создание события в прошлом",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID_6\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"Арбуз\",\r\n    \"startAt\": \"2023-06-01T05:00:00+03:00\",\r\n    \"endAt\": \"2023-06-01T05:30:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/createPersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "перенос из прошлого в будущее + изм цвета",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"time_6\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"\r",
+									"var key = \"eventID_6_1\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"\",\r\n    \"title\": \"Арбуз\",\r\n    \"startAt\": \"2023-11-11T05:00:00+03:00\",\r\n    \"endAt\": \"2023-11-11T05:30:00+03:00\",\r\n    \"id\": {{eventID_6}},\r\n    \"oldStartAt\": \"2023-06-01T05:00:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/updatePersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "удаление события",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{eventID_6_1}},\r\n    \"startAt\": \"{{time_6}}\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/removePersonal"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "7. Редактирование события (изменить все поля формы)",
+			"item": [
+				{
+					"name": "создание события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID_7\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"Event01.06.23 without description фиолет\",\r\n    \"startAt\": \"2023-06-01T05:00:00+03:00\",\r\n    \"endAt\": \"2023-06-01T05:30:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/createPersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "изменение всех полей",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"time_7\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"\r",
+									"var key = \"eventID_7_1\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"добавить описание\",\r\n    \"title\": \"Event05.06.23 with description желтый\",\r\n    \"startAt\": \"2023-06-05T05:00:00+03:00\",\r\n    \"endAt\": \"2023-06-05T05:30:00+03:00\",\r\n    \"id\": {{eventID_7}},\r\n    \"oldStartAt\": \"2023-06-01T05:00:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/updatePersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "удаление события Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{eventID_7_1}},\r\n    \"startAt\": \"{{time_7}}\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/removePersonal"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "8. Редактирование события (оставить все поля без изменений)",
+			"item": [
+				{
+					"name": "создание события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID_8\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"есть Описание\",\r\n    \"title\": \"Event01.06.23 with description фиолет\",\r\n    \"startAt\": \"2023-06-01T05:00:00+03:00\",\r\n    \"endAt\": \"2023-06-01T05:30:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/createPersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "оставить поля без изменений",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"time_8\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"есть Описание\",\r\n    \"title\": \"Event01.06.23 with description фиолет\",\r\n    \"startAt\": \"2023-06-01T05:00:00+03:00\",\r\n    \"endAt\": \"2023-06-01T05:30:00+03:00\",\r\n    \"id\": {{eventID_8}},\r\n    \"oldStartAt\": \"2023-06-01T05:00:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/updatePersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "удаление события",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{eventID_8}},\r\n    \"startAt\": \"{{time_8}}\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/removePersonal"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "9. Удаление события из текущей даты",
+			"item": [
+				{
+					"name": "создание события \"Сегодня\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"eventID_9\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value);\r",
+									"\r",
+									"var key = \"time_9\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var moment = require('moment');\r",
+									"pm.variables.set(\"currentDate\", moment().format((\"YYYY-MM-DD\")))\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"Сегодня? Сегодня!\",\r\n    \"title\": \"Event Сегодня with description фиолет\",\r\n    \"startAt\": \"{{currentDate}}T18:00:00+00:00\",\r\n    \"endAt\": \"{{currentDate}}T18:30:00+00:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/createPersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "удаление события \"Сегодня\"",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{eventID_9}},\r\n    \"startAt\": \"{{time_9}}\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/removePersonal"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "10. Негативные проверки при создании события",
+			"item": [
+				{
+					"name": "поле \"Название события\" пустое",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"\",\r\n    \"startAt\": \"2022-03-08T05:00:00+03:00\",\r\n    \"endAt\": \"2022-03-08T05:30:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/createPersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "поле \"Название события\" более 40 символов - 41",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"Условий проверки административных организ\",\r\n    \"startAt\": \"2022-03-08T05:00:00+03:00\",\r\n    \"endAt\": \"2022-03-08T05:30:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/createPersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "поле \"Описание\" более 500 символов - 501",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"Собой поставленных постоянный постоянный идейные реализации подготовки в образом также прогрессивного от в реализации участниками существенных нас и сложившаяся плановых прогрессивного в важную намеченных финансовых модель собой по обучения особенности нашей форм организационной выполнять выполнять и поставленных повседневная прогрессивного разработке эксперимент и эксперимент высшего также оценить роль особенности позволяет модель сложившаяся высшего равным и рост нашей проверки прогрессивного н\",\r\n    \"title\": \"{{$randomMonth}}\",\r\n    \"startAt\": \"2022-03-08T05:00:00+03:00\",\r\n    \"endAt\": \"2022-03-08T05:30:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/createPersonal"
+					},
+					"response": []
+				},
+				{
+					"name": "поле \"Дата\" 32.07.2022 (некорр)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "api-teachers.skyeng.ru"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "ru"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "{{MyCookiesSkyeng}}"
+							},
+							{
+								"key": "origin",
+								"value": "https://teachers.skyeng.ru"
+							},
+							{
+								"key": "referer",
+								"value": "https://teachers.skyeng.ru/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-site"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"{{$randomCompanyName}}\",\r\n    \"title\": \"{{$randomMonth}}\",\r\n    \"startAt\": \"2022-07-32T05:00:00+03:00\",\r\n    \"endAt\": \"2022-07-32T05:30:00+03:00\"\r\n}"
+						},
+						"url": "{{UrlSkyeng}}/{{Ver}}/schedule/createPersonal"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "MyCookiesSkyeng",
+			"value": "__ddg1_=MEqLVBAhiCYDxMUeMbl3; _setz=Europe/Moscow; _seid=0b2d8f3e00a041fea8b72c1b0e86cd9f; _ym_uid=1664944410873492829; _fbp=fb.1.1664944412834.37186341; __exponea_etc__=56b65314-244f-4386-bc87-e42a956bbda5; _tt_enable_cookie=1; _ttp=aa4dbaac-c5c3-4f0e-85cf-ef1e44d89d05; amplitude_id_5134257a3af9005617c6eba803e3c536skyeng.ru=eyJkZXZpY2VJZCI6ImY3YjZlNDNjLTI5ODktNGU2Ny05YzNkLTRhNjU3MGEwNjU0M1IiLCJ1c2VySWQiOiIxNzcwNTM0MiIsIm9wdE91dCI6ZmFsc2UsInNlc3Npb25JZCI6MTY2NDk0NDQ0MTk4MiwibGFzdEV2ZW50VGltZSI6MTY2NDk0NDUxMDU4NCwiZXZlbnRJZCI6MCwiaWRlbnRpZnlJZCI6MSwic2VxdWVuY2VOdW1iZXIiOjF9; media.audioInputHash=7d8e1e7a5f94ccee6ba7db4d3215c03a; media.audioOutputHash=99b3bbf2dfb1029e1aecbd227bebb744; media.videoInputHash=89d71f2ed37c2fb3846e9a229516816a; uxs_uid=d0e22400-44a4-11ed-99a8-a12b35935d4a; tmr_lvid=7c9395be76da9e920e4d69ec42643f2f; tmr_lvidTS=1664944412621; ab_id=92fff3965e56d9eb786f4412103c3a6a21335224; es_id=15754390; _ym_d=1683647926; studcab_current_product={%22type%22:%22single%22%2C%22identifier%22:%22english-adult-not-native-speaker%22}; advcake_session_id=32e6f0c6-acc7-40b3-47d5-195392b31a0a; advcake_utm_webmaster=; advcake_click_id=; skyeng_mData=m3tol25fgfn2c86f0blnFkQjZHIhYAgA; _gcl_au=1.1.1039731136.1691660384; _ym_isad=2; _ym_visorc=b; _seqp=source_type=cpa_network&utm_source=admitad&utm_medium=cpa&utm_campaign=779869&admitad_uid=b535db483e3466a04edcb5b4f054acf5&workflow=adults; _gid=GA1.2.168439885.1691660384; advcake_track_url=https%3A%2F%2Fskyeng.ru%2F%3Fsource_type%3Dcpa_network%26utm_source%3Dadmitad%26utm_medium%3Dcpa%26utm_campaign%3D779869%26admitad_uid%3Db535db483e3466a04edcb5b4f054acf5%26workflow%3Dadults; advcake_utm_partner=779869; __exponea_time2__=-0.9505615234375; global_id=YWVzLTEyOC1jYmM%3D.bJKnkzO11FOxNP1rkx%2Fycg%3D%3D.NY31OS6Kp1OHhDjChkaAmSMdsFyWb8SXHx3y8Q%2BqzLg%3D; session_global=pjaer5lga0f1jhnc5l54bd7tpd; _seqp_time=1691660461; token_global=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VySWQiOjE0NzIwMDY5LCJpZGVudGl0eSI6InRlc3QudHN0MzIwQHNreWVuZy5ydSIsImlkZW50aXR5TG9naW4iOm51bGwsImlkZW50aXR5RW1haWwiOiJ0ZXN0LnRzdDMyMEBza3llbmcucnUiLCJpZGVudGl0eVBob25lIjoiKzc5ODU0NTg2NTY4IiwibmFtZSI6InRlc3QiLCJzdXJuYW1lIjpudWxsLCJlbWFpbCI6InRlc3QudHN0MzIwQHNreWVuZy5ydSIsInVpTGFuZ3VhZ2UiOiJydSIsImxvY2FsZSI6InJ1Iiwic2VydmljZUxvY2FsZSI6bnVsbCwidWFzIjozMCwiand0VHlwZSI6MSwianRpIjoiTzRiOUN0N09BTkowb284ZmxlVGl6dmZIZ0NHQWJ4emIiLCJicmFuZCI6bnVsbCwiZXhwIjoxNjkxNzQ2ODYyLCJhSXNTdHJvbmciOnRydWUsImFUeXBlIjoiVVNFUk5BTUVfUEFTU1dPUkQiLCJhVGltZSI6MTY5MTY2MDQ1OSwicm9sZXMiOlsiUk9MRV9URUFDSEVSX0NBTkRJREFURSIsIlJPTEVfVEVBQ0hFUl9DQU5ESURBVEVfQkFTRV9BQ0NFU1MiLCJST0xFX1RUQ19VU0FHRSIsIlJPTEVfVklNQk9YX1RFQUNIRVJfVVNBR0UiLCJST0xFX1RFQUNIRVIiLCJST0xFX0NSTTJfVEVBQ0hFUl9BQ0NFU1MiLCJST0xFX01BVEhfVEVBQ0hFUiIsIlJPTEVfTUFUSF9DT05URU5UX1RIRU1FX1ZJRVciXX0.DMSVD3LsHKLPcpTDuAum2gLD_MIu_Uyig9hJ-PLR9HdSgY152FZ09ZDuUQs7Q93Zgupquv47QuSP5x9k5GRAJi8-N2R3dL2sQFYLjAgqoBUBmaTkI5UMf0va1cdsBNqt3QDPn9p78Ntjz3R1Ka6kxzD2dAmqrzEN00d33KZDBA7xBXHxkBsTYNZ0yxdRtXScyc02hTUuTnONkz9vkBoTftBe7-nmN7jcs6IqL7BiQPA3esR7q0NedkjCTnRe63SDeQu8dtZ5otTGZYwC197PHl3Dt2Rvcgx7o6_GKLELWoPEXRqpo6WG9s6FMhL0qmHX2FPxkja5Dg0iqyHG621n3_O9b93xKYsMwK_0mD4WFRobtXqktJWdJYnfd3YFJ2es8fKDJky_W2lvmdVgbx-WLdcPtwQPNJr2whNuUMMipXd_yFmSqT57ixsrmhyhtWVHhBF-daXUv_oyiu3ahJOXb5bDQobbwgCYCqPLiBGkVZz9l4NoXz5-OAiKVLc80n598zYj4564d8VKzWOMwf2_qv-kyYokx00XUGkqK3byc4hU24IYIYJTCcwtAmRILaQlBUY_7bX8VjYRioav6McvRirr1ncn3WOTl3vLxfk1Tyv6ykhFiBfaaNVo_L6pG4X5HmQGaxzLGSpdibW3laNoqX2Gel_TjZgdb-g20WxjMDw; _ga_03EGKN82H3=GS1.1.1691660384.3.1.1691660504.18.0.0; _ga_5DWC4JK87M=GS1.1.1691660384.3.1.1691660504.18.0.0; _ga=GA1.1.886764788.1691318851; _ga_SR964WVJCV=GS1.1.1691660505.3.1.1691660540.0.0.0;",
+			"type": "string"
+		},
+		{
+			"key": "UrlSkyeng",
+			"value": "https://api-teachers.skyeng.ru",
+			"type": "string"
+		},
+		{
+			"key": "Ver",
+			"value": "v2",
+			"type": "string"
+		},
+		{
+			"key": "pastDay",
+			"value": "2023-07-31",
+			"type": "string"
+		},
+		{
+			"key": "year",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "day2022",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "anyfutureday",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "eventID_6",
+			"value": ""
+		},
+		{
+			"key": "time_6",
+			"value": ""
+		},
+		{
+			"key": "eventID_6_1",
+			"value": ""
+		},
+		{
+			"key": "eventID_1",
+			"value": ""
+		},
+		{
+			"key": "time_1",
+			"value": ""
+		},
+		{
+			"key": "eventID_2",
+			"value": ""
+		},
+		{
+			"key": "time_2",
+			"value": ""
+		},
+		{
+			"key": "eventID_4",
+			"value": ""
+		},
+		{
+			"key": "eventID_9",
+			"value": ""
+		},
+		{
+			"key": "time_9",
+			"value": ""
+		},
+		{
+			"key": "eventID_3",
+			"value": ""
+		},
+		{
+			"key": "time_3",
+			"value": ""
+		},
+		{
+			"key": "eventID_3_2",
+			"value": ""
+		},
+		{
+			"key": "time_3_2",
+			"value": ""
+		},
+		{
+			"key": "eventID_5",
+			"value": ""
+		},
+		{
+			"key": "time_5",
+			"value": ""
+		},
+		{
+			"key": "eventID_5_2",
+			"value": ""
+		},
+		{
+			"key": "eventID_7",
+			"value": ""
+		},
+		{
+			"key": "time_7",
+			"value": ""
+		},
+		{
+			"key": "eventID_7_1",
+			"value": ""
+		},
+		{
+			"key": "eventID_8",
+			"value": ""
+		},
+		{
+			"key": "time_8",
+			"value": ""
+		},
+		{
+			"value": ""
+		},
+		{
+			"value": ""
+		}
+	]
+}

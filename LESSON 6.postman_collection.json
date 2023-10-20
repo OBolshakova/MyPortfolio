@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "f4c52f68-8f4f-43ed-84ce-13f64ac0ba6a",
+		"name": "LESSON 6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28168633"
+	},
+	"item": [
+		{
+			"name": "test 1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml; charset=utf-8"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "http://speller.yandex.net/services/spellservice/checkTexts"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <CheckTextsRequest xmlns=\"http://speller.yandex.net/services/spellservice\" lang=\"ru,en\" options=\"0\" format=\"\">\n    <soap:text>Все хатят роботать тестеровщиком</soap:text>\n    </CheckTextsRequest>\n  </soap:Body>\n</soap:Envelope>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://speller.yandex.net/services/spellservice"
+			},
+			"response": []
+		},
+		{
+			"name": "test 5",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml; charset=utf-8"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "http://speller.yandex.net/services/spellservice/checkTexts"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <CheckTextsRequest xmlns=\"http://speller.yandex.net/services/spellservice\" lang=\"ru,en\" options=\"0\" format=\"\">\n    <soap:text>\n        Пагиб поэд, невольник чезти\n         Пал, оклеветаный малвой\n         </soap:text>\n    </CheckTextsRequest>\n  </soap:Body>\n</soap:Envelope>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://speller.yandex.net/services/spellservice"
+			},
+			"response": []
+		},
+		{
+			"name": "test 3",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml; charset=utf-8"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "http://speller.yandex.net/services/spellservice/checkTexts"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <CheckTextsRequest xmlns=\"http://speller.yandex.net/services/spellservice\" lang=\"ru,en\" options=\"0\" format=\"\">\n    <soap:text>daon't waste yur time</soap:text>\n    </CheckTextsRequest>\n  </soap:Body>\n</soap:Envelope>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://speller.yandex.net/services/spellservice"
+			},
+			"response": []
+		},
+		{
+			"name": "test 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml; charset=utf-8"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "http://speller.yandex.net/services/spellservice/checkTexts"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <CheckTextsRequest xmlns=\"http://speller.yandex.net/services/spellservice\" lang=\"\" options=\"0\" format=\"\">\n    <soap:text>я ехоло ддомой</soap:text>\n    </CheckTextsRequest>\n  </soap:Body>\n</soap:Envelope>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://speller.yandex.net/services/spellservice"
+			},
+			"response": []
+		},
+		{
+			"name": "test 4",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml; charset=utf-8"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "http://speller.yandex.net/services/spellservice/checkTexts"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <CheckTextsRequest xmlns=\"http://speller.yandex.net/services/spellservice\" lang=\"ru,en\" options=\"0\" format=\"\">\n    <soap:text>Do you liike to четать</soap:text>\n    </CheckTextsRequest>\n  </soap:Body>\n</soap:Envelope>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "http://speller.yandex.net/services/spellservice"
+			},
+			"response": []
+		}
+	]
+}
