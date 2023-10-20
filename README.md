@@ -19,7 +19,7 @@
 - провожу бэк-энд тестирование с помощью API
 - навык работы с devtools
 - практические навыки работы с Postman, Mockoon
-- 
+  
 Платформы: Windows, iOS, Android
 Браузеры: Chrome, FireFox, Edge, Opera, Safari
 Языки программирования: HTML, основы SQL, основы JSON
